@@ -5,6 +5,9 @@ import './App.css'
 import Bookshelf from './Bookshelf'
 import Search from './Search'
 
+// Guidance from Udacity's React Fundamentals Course was instrumental in the development 
+// of this application: https://in.udacity.com/course/react-nanodegree--nd019
+
 class App extends React.Component {
 	state = {
 		allBooks: []
@@ -18,8 +21,8 @@ class App extends React.Component {
 	}
 
 	// Updates a book's shelf location based on user input
-	changeShelf= (book,shelf) => {
-		BooksAPI.update(book,shelf)
+	changeShelf= (book, shelf) => {
+		BooksAPI.update(book, shelf)
 		.then(()=> {
        		BooksAPI.getAll().then((allBooks) => {
 				this.setState({ allBooks })
@@ -28,17 +31,18 @@ class App extends React.Component {
 	}
 	
 	render() {
+    	const { allBooks } = this.state
 		return (
 			<div>
 				<Route exact path='/' render={() => (
 					<Bookshelf 
-						books={this.state.allBooks}
+						books={allBooks}
 						changeShelf={this.changeShelf}
 					/>
 				)}/>
 				<Route path='/search' render={() => (
 					<Search 
-    					books={this.state.allBooks}
+    					books={allBooks}
 						changeShelf={this.changeShelf}	
 					/>
 				)}/>

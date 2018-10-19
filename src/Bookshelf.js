@@ -5,6 +5,7 @@ import Book from './Book'
 import sortBy from 'sort-by'
 
 function Bookshelf (props) {
+  	const { books, changeShelf } = props
 	return (
 		<div className="app">
 			<div className="list-books">
@@ -18,10 +19,10 @@ function Bookshelf (props) {
 							<div className="bookshelf-books">
 								<ol className="books-grid">
 									{/* Loops through all books on Currently Reading shelf */}
-									{props.books.filter(book => book.shelf === 'currentlyReading').sort(sortBy('title'))
+									{books.filter(book => book.shelf === 'currentlyReading').sort(sortBy('title'))
 									.map(book => (
 										<li key={book.id}>
-											<Book book={book} changeShelf={props.changeShelf} currentShelf='currentlyReading' />
+											<Book book={book} changeShelf={changeShelf} currentShelf='currentlyReading' />
 										</li>
 									))}
 								</ol>
@@ -32,10 +33,10 @@ function Bookshelf (props) {
 							<div className="bookshelf-books">
 								<ol className="books-grid">
 									{/* Loops through all books on Want To Read shelf */}
-									{props.books.filter(book => book.shelf === 'wantToRead').sort(sortBy('title'))
+									{books.filter(book => book.shelf === 'wantToRead').sort(sortBy('title'))
 									.map(book => (
 	 									<li key={book.id}>
-											<Book book={book} changeShelf={props.changeShelf} currentShelf='wantToRead' />
+											<Book book={book} changeShelf={changeShelf} currentShelf='wantToRead' />
 										</li>
 									))}
 								</ol>
